@@ -11,48 +11,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+    var answers = listOf("Yes", "No", "Follow your heart", "Follow your brain")
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val activityMainView = binding.root
 
-        setContentView(R.layout.activity_main)
-
-
-
-
-
-
-
-
-
-        """companion object {
-        @JvmField
-        var testVar: String = "one"
-    }
-
-        val txtAnswer = findViewById<TextView>(R.id.textView)
-        val sendButton = findViewById<Button>(R.id.button)
-
-        
-
-        test1 = "2"
-
-        println(test1)
-
-        Thread.sleep(3000)
-        // testVar = "two"
-
-        // txtAnswer.setText(testVar)
-
-
-        
-   sendButton.setOnClickListener {
-            // var answer = Random.nextInt(0, 3)
-            var answer = testVar
-            txtAnswer.setText("")
+        binding.sendButton.setOnClickListener {
+            if (binding.questionTxt.text.isEmpty()) {
+                binding.answerTxt.text = "Ask me something your mortal"
+            }else{
+                val answerDefinition = Random.nextInt(0,4)
+                binding.answerTxt.text = answers[answerDefinition]
+                binding.questionTxt.setText("")
+            }
         }
-"""
 
+        setContentView(activityMainView)
     }
 }
